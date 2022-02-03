@@ -38,11 +38,13 @@ class property_offer(models.Model):
 
     def accepted(self):
         for record in self:
-            if record.status == 'accepted':
-                return True
+            record.status="accepted"
+            record.property_id.buyer_id = record.partner_id
+            record.property_id.selling_price = record.price
+            return True
 
     def refused(self):
         for record in self:
-            if record.status == 'refused':
-                return True
+            record.status ='refused'
+            return True
            
