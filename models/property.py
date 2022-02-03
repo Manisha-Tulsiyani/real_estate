@@ -1,4 +1,5 @@
-from odoo import api,fields,models
+from odoo import _,api,fields,models
+from odoo.exceptions import UserError
 
 class Property(models.Model):
     _name="estate.property"
@@ -31,6 +32,11 @@ class Property(models.Model):
     best_price = fields.Float(compute="_compute_best_price")
     total_area = fields.Float(compute="_compute_totalarea")
 
+    _sql_constraints = [
+        ('check_excepted_price', 'check(expected_price>0)', "Excepted price must be strictly Positive."),
+        ('check_selling_price', 'check(selling_price>=0)', "Selling price must be Positive.")
+    ]
+    
     @api.depends("living_area","garden_area")
     def _compute_totalarea(self):
         for record in self:
@@ -44,3 +50,27 @@ class Property(models.Model):
                 if not x or offer.price>x:
                     x = offer.price
             record.best_price = x
+
+    @api.onchange("garden")
+    def _onchange_garden(self):
+        if self.garden:
+            self.garden_area = 10
+            self.garden_orientation = 'north'
+        else:
+            self.garden_area = 0
+            self.garden_orientation = None
+
+    def sold(self):
+        for record in self:
+            if record.state == 'canceled':
+                raise UserError("Canceled properties cannot be sold.")
+            record.state = "sold"
+        return True
+
+    def cancel(self):
+        for record in self:
+            if record.state=='sold':
+                raise UserError("Sold properties cannot be canceled")
+            record.state="canceled"
+        return True
+   

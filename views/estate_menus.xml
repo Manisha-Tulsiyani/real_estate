@@ -2,19 +2,15 @@
 <odoo>
     <data>
         <menuitem name="Real Estate" id="menu_realestate_root">
-
             <menuitem name="Property" id="menu_property">
                 <menuitem name="Property" id="menu_property_action" action="action_property"/>
             </menuitem>
-
             <menuitem name="Property Type" id="menu_property_type">
                 <menuitem name="Property Type" id="menu_property_type_action" action="action_property_type"/>
             </menuitem>
-        
             <menuitem name="Property Tag" id="menu_property_tag">
                 <menuitem name="Property Tag" id="menu_property_tag_action" action="action_property_tag"/>
             </menuitem>
-
         </menuitem>
     </data>
 </odoo>
