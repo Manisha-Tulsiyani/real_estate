@@ -2,6 +2,7 @@ from datetime import date, datetime
 from odoo import api,fields,models
 from dateutil.relativedelta import relativedelta
 from odoo.exceptions import UserError
+from odoo.tools import float_compare
 
 class property_offer(models.Model):
     _name = "estate.property.offer"
@@ -19,6 +20,12 @@ class property_offer(models.Model):
     _sql_constraints = [
         ('check_price', 'check(price>0)', "Offer price must be strictly Positive."),
     ]
+
+    @api.constrains("price")
+    def _selling_price(self):
+        for record in self:
+            if record.price < (record.property_id.expected_price * 0.9) :
+                raise UserError("Must be 90% of execpted price")
 
     @api.depends("validity", "create_date")
     def _compute_deadline(self):
