@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="assign_buyer_form" model="ir.ui.view">
+            <field name="name">assign.buyer.form</field>
+            <field name="model">assign.buyer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="buyer_id"/>
+                    </group>
+                    <footer>
+                        <button name="action_assign_buyer" type="object" string="Assign Buyer" class="btn-primary"/>
+                        <button name="Cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_assign_buyer_wizard" model="ir.actions.act_window">
+            <field name="name">Assign Buyer</field>
+            <field name="res_model">assign.buyer</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="real_estate.model_estate_property"/>
+        </record>
+    </data>
+</odoo> 

@@ -15,6 +15,7 @@
        'views/property_tag_views.xml',
        'views/property_offer_views.xml',
        'views/estate_menus.xml',
+       'wizard/assign_buyer_view.xml'
     ],
     'demo': [],
     'installable': True,
