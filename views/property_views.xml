@@ -4,7 +4,7 @@
         <record model="ir.actions.act_window" id="action_property">
    		    <field name="name">Property</field>
             <field name="res_model">estate.property</field>
- 		    <field name="view_mode">tree,form,calendar</field>
+ 		    <field name="view_mode">tree,form,calendar,graph</field>
  	    </record>
 
         <record id="estate_property_tree" model="ir.ui.view">
@@ -101,10 +101,20 @@
             <field name="model">estate.property</field>
             <field name="arch" type="xml">
                 <calendar date_start="date_availability"  color="postcode" mode="month" event_open_popup="true">
-                <field name="name"/>
-                <field name="postcode" filter_field="True" />
-            </calendar>
-        </field>
-     </record>  
+                    <field name="name"/>
+                    <field name="postcode" filter_field="True" />
+                </calendar>
+            </field>
+        </record> 
+
+        <record id="estate_property_view_graph" model="ir.ui.view">
+            <field name="name">estate.property.graph</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <graph string="Price"> 
+                    <field name="expected_price" />
+                </graph>
+            </field> 
+        </record>
     </data>
 </odoo>
