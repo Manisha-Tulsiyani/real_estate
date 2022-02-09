@@ -4,7 +4,7 @@
         <record model="ir.actions.act_window" id="action_property">
    		    <field name="name">Property</field>
             <field name="res_model">estate.property</field>
- 		    <field name="view_mode">tree,form</field>
+ 		    <field name="view_mode">tree,form,calendar</field>
  	    </record>
 
         <record id="estate_property_tree" model="ir.ui.view">
@@ -34,6 +34,7 @@
                     <header>
                         <button name="sold" type="object" string="Sold"/>
                         <button name="cancel" type="object" string="Cancel"/>
+                        <field name="state" widget="statusbar" statusbar_visible="new,offer recieved,offer accepted,sold,canceled"/>
                     </header>
                     <sheet>
                         <group>
@@ -43,7 +44,6 @@
                                 <field name="tag_ids" widget="many2many_tags"/>
                             </group>
                             <group>
-                                <field name="state" />
                                 <field name="postcode"/>
                                 <field name="date_availability"/>
                                 <field name="expected_price"/>
@@ -96,5 +96,15 @@
             </field>
         </record>
 
+        <record id="estate_property_calendar" model="ir.ui.view">
+            <field name="name">estate.property.calendar</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <calendar date_start="date_availability"  color="postcode" mode="month" event_open_popup="true">
+                <field name="name"/>
+                <field name="postcode" filter_field="True" />
+            </calendar>
+        </field>
+     </record>  
     </data>
 </odoo>

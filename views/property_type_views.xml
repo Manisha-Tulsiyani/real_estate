@@ -22,6 +22,9 @@
             <field name="model">estate.property.type</field>
             <field name="arch" type="xml">
                 <form>
+                    <!-- <tree>
+                        <field name="property_id"/>
+                    </tree> -->
                     <sheet>
                         <group>
                             <group>
