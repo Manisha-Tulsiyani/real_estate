@@ -9,7 +9,6 @@
     'depends': [],
     'data':[
        'security/ir.model.access.csv',
-       
        'views/property_views.xml',
        'views/property_type_views.xml',
        'views/property_tag_views.xml',
