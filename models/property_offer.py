@@ -6,6 +6,7 @@ from odoo.exceptions import UserError
 class property_offer(models.Model):
     _name = "estate.property.offer"
     _description = "estate property offer"
+    _order="price desc"
 
     price = fields.Float()
     status = fields.Selection(selection=[("accepted","Accepted"),("refused","Refused")],copy=False)

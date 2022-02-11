@@ -4,6 +4,7 @@ from odoo.exceptions import UserError
 class Property(models.Model):
     _name="estate.property"
     _description = "estate property"
+    _order="id desc"
            
     name=fields.Char(string="Property Name",required=True)
     description=fields.Text(string="Property details")
